@@ -15,7 +15,7 @@ int main()
     seconds = total_seconds % 60;
 
     printf("There are:\n");
-    printf("H:M:S - %d:%d:%d\n", hours, minutes, seconds);
+    printf("H:M:S = %d:%d:%d\n", hours, minutes, seconds);
 
     return 0;
 }
