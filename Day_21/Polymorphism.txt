@@ -1,6 +1,6 @@
  Polymorphism is of two types
 1. Compile - time - static binding(overloading) (constructor, function)
-2. Run time - Dynamic Binding(overwriting)
+2. Run time - Dynamic Binding(overriding)
 
 
 function overloading - Same function name and diff paramenter order , paramenter type and paramenter count

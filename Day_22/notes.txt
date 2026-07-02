@@ -1,0 +1,13 @@
+Method overriding: Method overriding is the process of redefining a method in a child class that already exists in its parent class, allowing the child class to provide its own specific implementation.
+
+Binding : Binding is the process of connecting (associating) a function call with the actual function definition (code) that will be executed.
+
+Static Binding (Early Binding) or Compile-time binding: Static binding is the process of binding a function call to its definition at compile time. The compiler determines which function to call before the program runs.
+
+overloading - compile time polymorphism not compile time binding only 
+
+Dynamic Binding (Late Binding):Dynamic binding is the process of binding a function call to its definition at runtime. The decision about which function to call is made while the program is executing.
+
+overloading - Static binding because it do not contain inheritence
+
+overriding - Static and dynamic binding both because it do contain inheritence
