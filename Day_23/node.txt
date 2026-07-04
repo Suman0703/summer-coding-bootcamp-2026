@@ -1,0 +1,4 @@
+vector is an container
+container - string, array,vector,list.set, map,stack and queue
+STL library - standard template library
+
