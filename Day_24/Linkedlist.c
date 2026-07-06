@@ -238,22 +238,37 @@ void count()
 
 void edit()
 {
+    int oldValue, newValue;
+    int found = 0;
 
-	int node, value;
-	printf("Enter Node and value to edit:");
-	scanf("%d %d", &node, &value);
-	struct Node *temp = start;
+    struct Node *temp = start;
 
-	while (temp != NULL)
-	{
-		if (temp->num == node)
-		{
-			temp->num = value;
-		}
-		else
-		{
-			temp = temp->next;
-		}
-	}
-	printf("Count: %d", temp -> num );
+    if (start == NULL)
+    {
+        printf("Linked List is Empty.\n");
+        return;
+    }
+
+    printf("Enter value to edit: ");
+    scanf("%d", &oldValue);
+
+    printf("Enter new value: ");
+    scanf("%d", &newValue);
+
+    while (temp != NULL)
+    {
+        if (temp->num == oldValue)
+        {
+            temp->num = newValue;
+            found = 1;
+            break;
+        }
+
+        temp = temp->next;
+    }
+
+    if (found)
+        printf("Node updated successfully.\n");
+    else
+        printf("Node not found.\n");
 }

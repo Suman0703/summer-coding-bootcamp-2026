@@ -10,8 +10,9 @@ struct Node
 struct Node *start = NULL;
 
 // Function Declarations
-void insertAtEnd();
+void insert();
 void display();
+void countNodes();
 
 int main()
 {
@@ -19,16 +20,18 @@ int main()
 
     do
     {
+        printf("\n===== COUNT LINKED LIST NODES =====\n");
         printf("1. Insert Node\n");
         printf("2. Display List\n");
-        printf("3. Exit\n");
+        printf("3. Count Nodes\n");
+        printf("4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice)
         {
         case 1:
-            insertAtEnd();
+            insert();
             break;
 
         case 2:
@@ -36,6 +39,10 @@ int main()
             break;
 
         case 3:
+            countNodes();
+            break;
+
+        case 4:
             printf("Exiting...\n");
             break;
 
@@ -43,12 +50,12 @@ int main()
             printf("Invalid Choice!\n");
         }
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
 
-void insertAtEnd()
+void insert()
 {
     struct Node *newNode, *temp;
 
@@ -72,12 +79,10 @@ void insertAtEnd()
     else
     {
         temp = start;
-
         while (temp->next != NULL)
         {
             temp = temp->next;
         }
-
         temp->next = newNode;
     }
 
@@ -86,7 +91,7 @@ void insertAtEnd()
 
 void display()
 {
-    struct Node *temp;
+    struct Node *temp = start;
 
     if (start == NULL)
     {
@@ -94,9 +99,7 @@ void display()
         return;
     }
 
-    temp = start;
-
-    printf("\nLinked List:\n");
+    printf("Linked List: ");
 
     while (temp != NULL)
     {
@@ -105,4 +108,18 @@ void display()
     }
 
     printf("NULL\n");
+}
+
+void countNodes()
+{
+    int count = 0;
+    struct Node *temp = start;
+
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+
+    printf("Total number of nodes = %d\n", count);
 }

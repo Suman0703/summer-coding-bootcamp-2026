@@ -10,8 +10,9 @@ struct Node
 struct Node *start = NULL;
 
 // Function Declarations
-void insertAtEnd();
+void insert();
 void display();
+void edit();
 
 int main()
 {
@@ -19,16 +20,18 @@ int main()
 
     do
     {
+        printf("\n===== EDIT LINKED LIST =====\n");
         printf("1. Insert Node\n");
         printf("2. Display List\n");
-        printf("3. Exit\n");
+        printf("3. Edit Node\n");
+        printf("4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice)
         {
         case 1:
-            insertAtEnd();
+            insert();
             break;
 
         case 2:
@@ -36,6 +39,10 @@ int main()
             break;
 
         case 3:
+            edit();
+            break;
+
+        case 4:
             printf("Exiting...\n");
             break;
 
@@ -43,12 +50,12 @@ int main()
             printf("Invalid Choice!\n");
         }
 
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
 
-void insertAtEnd()
+void insert()
 {
     struct Node *newNode, *temp;
 
@@ -56,7 +63,7 @@ void insertAtEnd()
 
     if (newNode == NULL)
     {
-        printf("Memory allocation failed.\n");
+        printf("Memory Allocation Failed!\n");
         return;
     }
 
@@ -72,12 +79,10 @@ void insertAtEnd()
     else
     {
         temp = start;
-
         while (temp->next != NULL)
         {
             temp = temp->next;
         }
-
         temp->next = newNode;
     }
 
@@ -86,7 +91,7 @@ void insertAtEnd()
 
 void display()
 {
-    struct Node *temp;
+    struct Node *temp = start;
 
     if (start == NULL)
     {
@@ -94,9 +99,7 @@ void display()
         return;
     }
 
-    temp = start;
-
-    printf("\nLinked List:\n");
+    printf("\nLinked List: ");
 
     while (temp != NULL)
     {
@@ -105,4 +108,39 @@ void display()
     }
 
     printf("NULL\n");
+}
+
+void edit()
+{
+    int oldValue, newValue, found = 0;
+    struct Node *temp = start;
+
+    if (start == NULL)
+    {
+        printf("Linked List is Empty.\n");
+        return;
+    }
+
+    printf("Enter value to edit: ");
+    scanf("%d", &oldValue);
+
+    printf("Enter new value: ");
+    scanf("%d", &newValue);
+
+    while (temp != NULL)
+    {
+        if (temp->num == oldValue)
+        {
+            temp->num = newValue;
+            found = 1;
+            break;
+        }
+
+        temp = temp->next;
+    }
+
+    if (found)
+        printf("Node updated successfully.\n");
+    else
+        printf("Node not found.\n");
 }
