@@ -163,9 +163,18 @@ void del()
 
 void atbeg()
 {
-	struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+	int val;
 	printf("Enter data of node: ");
-	scanf("%d", &ptr->num);
+	scanf("%d", &val);
+
+	struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+	if (ptr == NULL)
+	{
+		printf("Memory allocation failed.");
+		return;
+	}
+
+	ptr->num = val;
 	ptr->next = NULL;
 
 	if (start == NULL)
@@ -238,37 +247,37 @@ void count()
 
 void edit()
 {
-    int oldValue, newValue;
-    int found = 0;
+	int oldValue, newValue;
+	int found = 0;
 
-    struct Node *temp = start;
+	struct Node *temp = start;
 
-    if (start == NULL)
-    {
-        printf("Linked List is Empty.\n");
-        return;
-    }
+	if (start == NULL)
+	{
+		printf("Linked List is Empty.\n");
+		return;
+	}
 
-    printf("Enter value to edit: ");
-    scanf("%d", &oldValue);
+	printf("Enter value to edit: ");
+	scanf("%d", &oldValue);
 
-    printf("Enter new value: ");
-    scanf("%d", &newValue);
+	printf("Enter new value: ");
+	scanf("%d", &newValue);
 
-    while (temp != NULL)
-    {
-        if (temp->num == oldValue)
-        {
-            temp->num = newValue;
-            found = 1; 
-            break;
-        }
+	while (temp != NULL)
+	{
+		if (temp->num == oldValue)
+		{
+			temp->num = newValue;
+			found = 1;
+			break;
+		}
 
-        temp = temp->next;
-    }
+		temp = temp->next;
+	}
 
-    if (found)
-        printf("Node updated successfully.\n");
-    else
-        printf("Node not found.\n");
+	if (found)
+		printf("Node updated successfully.\n");
+	else
+		printf("Node not found.\n");
 }
