@@ -1,124 +1,132 @@
-#include <iostream>
-using namespace std;
+// Simple Queue using Array
 
-class Queue{
-    int *arr;
-    int size;
-    int front = -1 , rear = -1;
+#include <stdio.h>
+#define MAX 5
 
-    public:
-    Queue(int s){
-        size = s;
-        arr = new int [size];
-    }
-                            // insertion (enque)
+int queue[MAX];
+int front = -1, rear = -1;
 
-    void enqueue(){           // insert at rear in queue
-        int val;
-        cout<<"Enter value of Q : ";
-        cin>>val;
-        if(front == -1 || rear == -1){
-            front=rear=0;
-            arr[rear]=val;
-        }
-        else if((rear+1)%size== front){
-            cout<<"Queue is full !!\n";
-            return;
-        }
-        else{
-            rear=rear+1%size;
-              arr[rear] = val;
-        }
-        cout<<"data inserted !!\n";
-    }
+void insert();
+void delete_element();
+void peek();
+void display();
 
-                            // deletion(dequeue)
-    
-    void dequeue(){
-        if(front == -1){
-            cout<<"Queue is empty !!\n";
-            return;
-        }
-        else{
-            cout<<arr[front]<<endl<<" deleted !!\n";
-            front=(front+1)%size;
-        }
-        if(front>rear){
-            front = rear = - 1;
-        }
-    }
-                            // is Full
-
-    bool isFull(){
-        if((rear+1)%size==front){
-            return true;
-        return false;
-        }
-    }
-                        // is Empty
-    bool isEmpty(){
-        if(front == -1){
-            return true;
-        return false;    
-        }
-        cout<<"Queue is empty ";
-    }
-
-    void display()
+int main()
 {
+    int choice;
 
-    if (front == -1)
+    do
     {
-        printf("Queue is Empty.");
+        printf("\n***** MAIN MENU *****");
+        printf("\n1. Insert");
+        printf("\n2. Delete");
+        printf("\n3. Peek");
+        printf("\n4. Display");
+        printf("\n5. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            insert();
+            break;
+
+        case 2:
+            delete_element();
+            break;
+
+        case 3:
+            peek();
+            break;
+
+        case 4:
+            display();
+            break;
+
+        case 5:
+            printf("Program Ended.\n");
+            break;
+
+        default:
+            printf("Invalid Choice!\n");
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
+// Insert (Enqueue)
+void insert()
+{
+    int num;
+
+    if (rear == MAX - 1)
+    {
+        printf("Queue Overflow!\n");
         return;
     }
 
-    while (front<=rear)
+    printf("Enter value: ");
+    scanf("%d", &num);
+
+    if (front == -1)
+        front = 0;
+
+    rear++;
+    queue[rear] = num;
+
+    printf("Element inserted.\n");
+}
+
+// Delete (Dequeue)
+void delete_element()
+{
+    if (front == -1 || front > rear)
     {
-        cout<<arr[front]<<" ";
-        front++;
+        printf("Queue Underflow!\n");
+        return;
+    }
+
+    printf("%d deleted.\n", queue[front]);
+    front++;
+
+    if (front > rear)
+    {
+        front = rear = -1;
     }
 }
-};
 
-
-int main( )
+// Peek
+void peek()
 {
-    Queue q1(5);
-	int ch;
-	char choice = 'y';
-	do
-	{
-		printf ("\n 1. ENQUEUE ") ;
-		printf ("\n 2. DEQUEUE")  ;
-		printf ("\n 3. DISPLAY") ;
-		printf ("\n 4. isempty ")	 ;
-		printf ("\n 5. isfull")  ;
-		printf ("\n 6. EXIT      ")  ;
-		printf ("\n\n Enter Your Choice = ") ;
-		scanf ("%d",&ch);
-		switch(ch)
-		{
-			case 1:
-				q1.enqueue ( );
-				break;
-			case 2:
-				q1.dequeue ( );
-				break;
-			case 3:
-				q1.display();
-				break;
-			case 4:
-				q1.isEmpty ( );
-				break;
-			case 5:
-				q1.isFull ( );
-				break;
-			case 6:
-				choice='n';
-				break;
-			default:
-				printf("INVALID CHOICE");
-		}
-	} while(choice=='y');
+    if (front == -1)
+    {
+        printf("Queue is Empty!\n");
+        return;
+    }
+
+    printf("Front element = %d\n", queue[front]);
+}
+
+// Display
+void display()
+{
+    int i;
+
+    if (front == -1)
+    {
+        printf("Queue is Empty!\n");
+        return;
+    }
+
+    printf("Queue: ");
+
+    for (i = front; i <= rear; i++)
+    {
+        printf("%d ", queue[i]);
+    }
+
+    printf("\n");
 }
