@@ -251,6 +251,7 @@ private:
             return 0;
         return 1 + countInternalNodes(root->left) + countInternalNodes(root->right);
     }
+
 };
 
 int main()
